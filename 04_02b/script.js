@@ -16,6 +16,14 @@ class Product {
     // Define the product message.
     this.notifyObservers(`${this.name} is back in stock.`);
   }
+
+  registerObserver(customer) {
+    this.observers.push(customer.message.bind(customer));
+  }
+
+  notifyObservers(productMessage) {
+    this.observers.forEach((customer) => customer(productMessage));
+  }
 }
 
 class Customer {
